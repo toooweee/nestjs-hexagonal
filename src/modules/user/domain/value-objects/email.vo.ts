@@ -1,15 +1,25 @@
 export class Email {
   private readonly value: string;
 
-  constructor(value: string) {
-    if (!this.isValid(value)) {
-      throw new Error('Invalid email');
-    }
-
+  private constructor(value: string) {
     this.value = value;
   }
 
-  private isValid(email: string): boolean {
+  static create(value: string) {
+    const normalized = value.trim();
+
+    if (!Email.isValid(normalized)) {
+      throw new Error('Invalid email address');
+    }
+
+    return new Email(value);
+  }
+
+  private static isValid(email: string): boolean {
     return email.includes('@');
+  }
+
+  getValue() {
+    return this.value;
   }
 }
