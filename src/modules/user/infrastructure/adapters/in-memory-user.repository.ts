@@ -24,7 +24,7 @@ export class InMemoryUserRepository implements UserRepositoryPort {
   async findByEmail(email: Email) {
     return Promise.resolve(
       Array.from(this.users.values()).find(
-        (user) => user.getEmail() === email,
+        (user) => user.getEmail().getValue() === email.getValue(),
       ) || null,
     );
   }
