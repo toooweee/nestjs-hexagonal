@@ -42,7 +42,7 @@ export class UserController {
     });
   }
 
-  @Get(':email')
+  @Get('email/:email')
   async findByEmail(@Param('email') email: string) {
     const user = await this.findByEmailUseCase.execute(email);
 
